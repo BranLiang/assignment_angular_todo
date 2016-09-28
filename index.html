@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="TodoApp">
+  <head>
+    <meta charset="utf-8">
+    <title>ToDo APP</title>
+    <script src="javascript/js/angular.js" charset="utf-8"></script>
+  </head>
+  <body ng-controller="TodoCtrl">
+
+    <!-- task create form  -->
+    <button type="button" name="button" ng-click="createTodo()">Create ToDo</button>
+
+    <form name="taskForm">
+      Task Name:
+      <input type="text" name="taskName" value="" ng-model="taskParams.text">
+      <br>
+      Date:
+      <input type="date" name="taskDate" value="" ng-model="taskParams.date">
+    </form>
+
+    <hr>
+
+
+    <!-- tasks index  -->
+    <table>
+      <thead>
+
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in items">
+          <td>{{ item.text }}</td>
+          <td>{{ item.dueDate | date }}</td>
+          <td><input type="checkbox" name="status" value=false ng-model="item.complete"></td>
+          <td><a href="" ng-click="deleteTask(item)">X</a><td>
+        </tr>
+        <button type="button" name="button" ng-click="clearComplete()">clearComplete</button>
+      </tbody>
+    </table>
+
+
+
+  </body>
+  <!-- app -->
+  <script src="javascript/app.js" charset="utf-8"></script>
+
+  <!-- controller -->
+  <script src="javascript/controller/TodoCtrl.js" charset="utf-8"></script>
+</html>
