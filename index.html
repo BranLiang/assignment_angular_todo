@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>ToDo APP</title>
     <script src="javascript/js/angular.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.16.2/lodash.min.js" charset="utf-8"></script>
   </head>
   <body ng-controller="TodoCtrl">
 
@@ -27,13 +28,10 @@
 
       </thead>
       <tbody>
-        <tr ng-repeat="item in items">
-          <td>{{ item.text }}</td>
-          <td>{{ item.dueDate | date }}</td>
-          <td><input type="checkbox" name="status" value=false ng-model="item.complete"></td>
-          <td><a href="" ng-click="deleteTask(item)">X</a><td>
-        </tr>
+        <tr todo-item ng-repeat="item in items | hideFilter: hide" item="item" delete-task="deleteTask(item)"></tr>
+
         <button type="button" name="button" ng-click="clearComplete()">clearComplete</button>
+        <button type="button" name="button" ng-click="toggleHide()">{{ HideText() }}</button>
       </tbody>
     </table>
 
@@ -45,4 +43,13 @@
 
   <!-- controller -->
   <script src="javascript/controller/TodoCtrl.js" charset="utf-8"></script>
+
+  <!-- filter -->
+  <script src="javascript/filter/todoFilter.js" charset="utf-8"></script>
+
+  <!-- directive -->
+  <script src="javascript/directive/todoItem.js" charset="utf-8"></script>
+
+  <!-- service -->
+  <script src="javascript/service/todoService.js" charset="utf-8"></script>
 </html>
